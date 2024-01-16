@@ -3,6 +3,7 @@
 """
 from flask import request
 from typing import List, TypeVar
+import re
 
 
 class Auth:
@@ -13,8 +14,13 @@ class Auth:
         """
         if path is None or excluded_paths is None or len(excluded_paths) == 0:
             return True
-        path_slash = path if path.endswith('/') else path + '/'
-        return all(p not in path_slash for p in excluded_paths)
+        path = path if path.endswith('/') else path + '/'
+        for pth in excluded_paths:
+            if pth[-1] == '*':
+                pth = pth[:-1] + '.*'
+            if re.fullmatch(pth, path):
+                return False
+        return True
 
     def authorization_header(self, request=None) -> str:
         """Public method for handling authorization header
