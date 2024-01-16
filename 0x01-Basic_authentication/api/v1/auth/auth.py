@@ -19,7 +19,9 @@ class Auth:
     def authorization_header(self, request=None) -> str:
         """Public method for handling authorization header
         """
-        return None
+        if request is None or 'Authorization' not in request.headers.keys():
+            return None
+        return request.headers['Authorization']
 
     def current_user(self, request=None) -> TypeVar('User'):
         """Public method for current user handling
