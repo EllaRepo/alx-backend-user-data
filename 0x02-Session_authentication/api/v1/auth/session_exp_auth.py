@@ -40,7 +40,7 @@ class SessionExpAuth(SessionAuth):
         """Method to return a User ID based on a Session ID
         """
         if session_id is None or type(session_id) != str or\
-                session_id not in self.user_id_by_session_id:
+                session_id not in self.user_id_by_session_id.keys():
             return None
         session_dict = self.user_id_by_session_id[session_id]
 
