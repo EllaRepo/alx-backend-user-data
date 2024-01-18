@@ -4,6 +4,7 @@
 from flask import request
 from typing import List, TypeVar
 import re
+import os
 
 
 class Auth:
@@ -33,3 +34,11 @@ class Auth:
         """Public method for current user handling
         """
         return None
+
+    def session_cookie(self, request=None):
+        """Method to return session cookie
+        """
+        if request is None:
+            return None
+        _my_session_id = os.getenv('SESSION_NAME')
+        return request.cookies.get(_my_session_id)
