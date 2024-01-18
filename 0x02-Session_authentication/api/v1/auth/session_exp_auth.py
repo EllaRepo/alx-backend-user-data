@@ -53,8 +53,8 @@ class SessionExpAuth(SessionAuth):
         if creation_time is None:
             return None
 
-        now = datetime.datetime.now()
-        live_time = datetime.timedelta(seconds=self.session_duration)
+        now = datetime.now()
+        live_time = timedelta(seconds=self.session_duration)
 
         if now > creation_time + live_time:
             return None
