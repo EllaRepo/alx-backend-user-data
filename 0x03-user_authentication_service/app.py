@@ -71,8 +71,7 @@ def get_reset_password_token() -> str:
     except Exception:
         abort(403)
 
-    response_payload = {"email": email, "reset_token": reset_token}
-    return jsonify(response_payload), 200
+    return jsonify({"email": email, "reset_token": reset_token})
 
 
 if __name__ == "__main__":
