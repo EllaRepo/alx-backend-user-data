@@ -68,10 +68,11 @@ def get_reset_password_token() -> str:
     email = request.form.get('email')
     try:
         reset_token = Auth.get_reset_password_token(email)
-        response_payload = {"email": email, "reset_token": reset_token}
-        return jsonify(response_payload), 200
     except Exception:
         abort(403)
+
+    response_payload = {"email": email, "reset_token": reset_token}
+    return jsonify(response_payload), 200
 
 
 if __name__ == "__main__":
