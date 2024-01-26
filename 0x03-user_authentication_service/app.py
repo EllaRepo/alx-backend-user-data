@@ -10,11 +10,15 @@ AUTH = Auth()
 
 @app.route("/")
 def welcome():
+    """home directory
+    """
     return jsonify({"message": "Bienvenue"})
 
 
 @app.route('/users', methods=['POST'])
 def register_user():
+    """Handles register user
+    """
     email = request.form.get('email')
     password = request.form.get('password')
 
